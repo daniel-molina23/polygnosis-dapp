@@ -1,10 +1,12 @@
 import './App.css';
 import Navbar from '../components/Navbar';
-import Home from '../pages/Home';
-import Current_Stages from '../pages/Current_Stages';
-import Demo from '../pages/Demo';
-import Contact from '../pages/Contact';
-import About from '../pages/About';
+import {
+  Home, 
+  Current_Stages,
+  Demo,
+  Contact,
+  About
+} from '../pages';
 import React from 'react';
 import {
   BrowserRouter,
