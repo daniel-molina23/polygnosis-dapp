@@ -1,13 +1,13 @@
 import './App.css';
 import Navbar from '../components/Navbar';
-import {
-  Home, 
-  Current_Stages,
-  Demo,
-  Contact,
-  About
-} from '../pages';
+import About from '../pages/About';
+import Home from '../pages/Home';
+import Demo from '../pages/Demo';
+import Contact from '../pages/Contact';
+import Current_Stages from '../pages/Current_Stages';
+
 import React from 'react';
+import { ProtectedRoute } from '../auth'; //chapter 2 section 7
 import {
   BrowserRouter,
   Switch,

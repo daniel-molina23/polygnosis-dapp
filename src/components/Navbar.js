@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
 
 const Navbar = () => {
     //isOpen state is used to trigger the menu on mobile or tablet devices
@@ -71,7 +72,11 @@ const Navbar = () => {
                     <div className="navbar-end">
                         <div className="navbar-item">
                             <div className="buttons">
-                                <a className="button is-white">Log in</a>
+                                <Link to="/current-stages" className="btn btn-primary">
+                                    <a className="button is-white">
+                                        Sign In
+                                    </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
