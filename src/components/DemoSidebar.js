@@ -1,10 +1,10 @@
 import React from 'react';
-import './DemoSidebarStyle.css';
+// import './DemoSidebarStyle.css';
 import { Link } from 'react-router-dom';
 
 
 const DemoSidebar = () => {
-
+ 
     //close the sidebar navigator
     function closeNav() {
         if(document.getElementById('mySidebar') != null){
@@ -24,12 +24,15 @@ const DemoSidebar = () => {
         console.log("hello open console?");
     }
 
-    function redirect(path) {
-        return <Link to={path} />
-    }
-
     return (
         <div>
+            {/* Replace either one */}
+
+            {/* <Link to="/current-stages/explore">Explore</Link>
+            <br/>
+            <Link to="/current-stages/my-work">My Work</Link>
+            <br/> */}
+
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn extra" onClick={closeNav()}>&times;</a>
                 <Link class="extra" to="/current-stages/explore">Explore</Link>
