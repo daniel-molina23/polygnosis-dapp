@@ -1,10 +1,16 @@
 import React from 'react';
 import IPFS_Logo from '../images/ipfs-logo-with-computer.png';
+import styled from 'styled-components';
+
+const Image = styled.img`
+    height: 50%;
+    width: 50%;
+`;
 
 
 const Demo = () => (
     <div>
-        <img src={IPFS_Logo} alt="IPFS Logo With Computer Connection"></img>
+        <Image src={IPFS_Logo} alt="IPFS Logo With Computer Connection"></Image>
         <h1 className="title is-1">IPFS Demo</h1>
 
         <h1>Upload file to IPFS</h1>
