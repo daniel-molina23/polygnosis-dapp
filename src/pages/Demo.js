@@ -1,15 +1,20 @@
 import React from 'react';
 import IPFS_Logo from '../images/ipfs-logo-with-computer.png';
 import styled from 'styled-components';
+import DemoSidebar from '../components/DemoSidebar';
 
 const Image = styled.img`
     height: 50%;
     width: 50%;
 `;
 
+const Div = styled.div`
+    color: white;
+`;
 
 const Demo = () => (
-    <div>
+    <Div>
+        <DemoSidebar />
         <Image src={IPFS_Logo} alt="IPFS Logo With Computer Connection"></Image>
         <h1 className="title is-1">IPFS Demo</h1>
 
@@ -23,7 +28,7 @@ const Demo = () => (
             <br/><br/>
             <input type="submit" name="Submit"/>
         </form>
-    </div>
+    </Div>
 );
 
 export default Demo;

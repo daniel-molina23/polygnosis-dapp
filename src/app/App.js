@@ -4,7 +4,7 @@ import About from '../pages/About';
 import Home from '../pages/Home';
 import Demo from '../pages/Demo';
 import Contact from '../pages/Contact';
-import Current_Stages from '../pages/Current_Stages';
+import CurrentStages from '../pages/CurrentStages';
 
 import React from 'react';
 import { ProtectedRoute } from '../auth'; //chapter 2 section 7
@@ -28,10 +28,10 @@ function App() {
           <Route exact path="/" component={Home}>
             <Redirect to="/home" />
           </Route>
-          <Route path="/current-stages"  component={Current_Stages}>
-            <Current_Stages />
+          <Route path="/current-stages" component={CurrentStages}>
+            <CurrentStages />
           </Route>
-          <Route path="/demo-free-trial"  component={Demo}>
+          <Route path="/demo-free-trial" component={Demo}>
             <Demo />
           </Route>
           <Route path="/contact" component={Contact}>

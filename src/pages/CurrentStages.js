@@ -12,7 +12,7 @@ const Wrapper = styled('div')`
 
 
 
-const Current_Stages = () => (
+const CurrentStages = () => (
     <Wrapper>
         <Heading
             fontWeight={FontWeight.Bold}
@@ -75,4 +75,4 @@ const Current_Stages = () => (
     </Wrapper>
 );
 
-export default Current_Stages;
+export default CurrentStages;
