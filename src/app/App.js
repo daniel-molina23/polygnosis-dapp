@@ -7,7 +7,9 @@ import Contact from '../pages/Contact';
 import CurrentStages from '../pages/CurrentStages';
 import MyWorkPage from '../demo/MyWorkPage';
 import ExplorePage from '../demo/ExplorePage';
-
+import {ProtectedRoute} from '../auth/ProtectedRoute';
+import {useAuth} from '../auth/useAuth';
+import {SignInForm} from '../auth/signInForm';
 
 import React from 'react';
 // import { ProtectedRoute } from '../auth'; //chapter 2 section 7
@@ -20,6 +22,7 @@ import {
 
 
 function App() {
+  const {isLoading, user } = useAuth();
   return (
     <BrowserRouter>
       <Navbar />
@@ -37,9 +40,9 @@ function App() {
           <Route path="/demo-free-trial" component={Demo}>
             <Demo />
           </Route>
-          <Route path="/my-work" component={MyWorkPage}>
+          <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/my-work" component={MyWorkPage}>
             <MyWorkPage />
-          </Route>
+          </ProtectedRoute>
           <Route path="/explore" component={ExplorePage}>
             <ExplorePage />
           </Route>
@@ -49,6 +52,12 @@ function App() {
           <Route path="/about" component={About}>
             <About />
           </Route>
+          <Route path="/sign-in" component={Contact}>
+            <SignInForm />
+          </Route>
+          <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/edit-profile" component={Contact}>
+            {/* needs page */}
+          </ProtectedRoute>
         </Switch>
       </div>
     </BrowserRouter>

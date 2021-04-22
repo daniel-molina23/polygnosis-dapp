@@ -30,12 +30,27 @@ class ExplorePage extends React.Component{
                         </li>
                         
                     </ul>
+                    <hr />
+                    <div>
+                        <ul>
+                            {newContent}
+                        </ul>
+                    </div>
                 </div>
             </div>
         )
     }
 
-}
+};
+
+const ls = [100,200,300,400,500];
+var newContent = ls.map(function (number){
+        return (<li key={number}>
+            <br/>
+            <p>{`Engineer-${number}'s work!`}</p>
+        </li>)
+    }
+);
 
 
 export default ExplorePage;

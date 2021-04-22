@@ -42,11 +42,11 @@ class MyWorkPage extends React.Component {
     }
 }
 
-const ls = [100,200,300,400,500];
+const ls = [1,2,3,4,5];
 var newContent = ls.map(function (number){
         return (<li key={number}>
             <br/>
-            <p>{`Here is list item # ${number}!`}</p>
+            <p>{`Here is my work item # ${number}!`}</p>
         </li>)
     }
 );
