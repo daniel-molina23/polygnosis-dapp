@@ -5,9 +5,12 @@ import Home from '../pages/Home';
 import Demo from '../pages/Demo';
 import Contact from '../pages/Contact';
 import CurrentStages from '../pages/CurrentStages';
+import MyWorkPage from '../demo/MyWorkPage';
+import ExplorePage from '../demo/ExplorePage';
+
 
 import React from 'react';
-import { ProtectedRoute } from '../auth'; //chapter 2 section 7
+// import { ProtectedRoute } from '../auth'; //chapter 2 section 7
 import {
   BrowserRouter,
   Switch,
@@ -33,6 +36,12 @@ function App() {
           </Route>
           <Route path="/demo-free-trial" component={Demo}>
             <Demo />
+          </Route>
+          <Route path="/my-work" component={MyWorkPage}>
+            <MyWorkPage />
+          </Route>
+          <Route path="/explore" component={ExplorePage}>
+            <ExplorePage />
           </Route>
           <Route path="/contact" component={Contact}>
             <Contact />

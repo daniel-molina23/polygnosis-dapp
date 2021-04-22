@@ -9,7 +9,6 @@ import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import "bulma/css/bulma.min.css";
 
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
