@@ -10,6 +10,10 @@ import ExplorePage from '../demo/ExplorePage';
 import {ProtectedRoute} from '../auth/ProtectedRoute';
 import {useAuth} from '../auth/useAuth';
 import {SignInForm} from '../auth/signInForm';
+import { 
+  UploadData,
+  EditProfilePage,
+} from '../user';
 
 import React from 'react';
 // import { ProtectedRoute } from '../auth'; //chapter 2 section 7
@@ -56,7 +60,10 @@ function App() {
             <SignInForm />
           </Route>
           <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/edit-profile" component={Contact}>
-            {/* needs page */}
+            <EditProfilePage />
+          </ProtectedRoute>
+          <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/upload-data" component={Contact}>
+            <UploadData />
           </ProtectedRoute>
         </Switch>
       </div>

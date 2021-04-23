@@ -1,22 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {Button} from '../ui';
+import { MyWorkButton } from '../components';
 
 
 const DemoSidebar = () => {
 
     return (
         <div>
-            <Link class="dropdown-item" to="/explore">
-                <button>
-                    Explore
-                </button>
-            </Link>
-
-            <Link class="dropdown-item" to="/my-work">
-                <button>
-                    My Work
-                </button>
-            </Link>
+            <MyWorkButton />
         </div>
     );
 };

@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
+import { signOutButton } from "../auth";
+
+export const signOutNewButton = signOutButton;
+
+export const signInButton = () => {
+    return (
+        <div className="buttons">
+            <Link to="/sign-in" className="btn btn-primary">
+                <a className="button is-white">
+                    Sign In
+                </a>
+            </Link>
+        </div>
+    )
+}
 
 
-const Navbar = () => {
+const Navbar = ({ isAuthed }) => {
     //isOpen state is used to trigger the menu on mobile or tablet devices
     const [isOpen, setOpen] = useState(false);
     return(
@@ -71,13 +86,11 @@ const Navbar = () => {
 
                     <div className="navbar-end">
                         <div className="navbar-item">
-                            <div className="buttons">
-                                <Link to="/current-stages" className="btn btn-primary">
-                                    <a className="button is-white">
-                                        Sign In
-                                    </a>
-                                </Link>
-                            </div>
+                            {
+                                isAuthed?
+                                <signOutNewButton /> :
+                                <signInButton />
+                            }
                         </div>
                     </div>
                 </div>
