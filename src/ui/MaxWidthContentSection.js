@@ -16,7 +16,7 @@ const ContentSection = styled.div`
     box-sizing: border-box;
     margin: 0 auto;
     max-width: 800px;
-    min-height: 100vh;
+    min-height: 300vh;
     padding: 16px;
 `;
 

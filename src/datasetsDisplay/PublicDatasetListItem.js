@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-    Button,
-    Thumbnail,
-} from '../ui';
+// import {
+//     Button,
+//     Thumbnail,
+// } from '../ui';
 import './DatasetListTable.css';
+import { TABLE, THEAD, TBODY, TR, TH, TD } from '../ui';
 
 
 
@@ -37,53 +38,77 @@ const ButtonWrap = styled.div`
 
 
 
-const getFormattedData = async (dataset) => {
-    if(!dataset) return null;
-    const { features, header, numOfRows } = dataset;
-    var table = document.createElement('table');
 
-    var thead = document.createElement('thead');
-    var tr = document.createElement('tr');
-    for (const feature in features){
-        var th = document.createElement('th');
-        th.textContent = feature;
-        tr.appendChild(th);
-    }
-    thead.appendChild(tr);
+// const getFormattedData = ({features, header, numOfRows}) => {
 
-    var tbody = document.createElement('tbody');
-    for(var i = 0; i < numOfRows; i++){
-        var tr = document.createElement('tr');
-        for(const feature in features){
-            var td = document.createElement('td');
-            td.textContent = header[feature][i];
-            tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-    }
+    
+// }
 
-    table.appendChild(thead);
-    table.appendChild(tbody);
 
-    return table;
-}
+
+
 
 
 /*
     This component displays a single dataset's details
     on the dataset list page.
 */
+
 export const PublicDatasetListItem = async ({ item: dataset, onSelect }) => {
-    const formattedData = await getFormattedData(dataset);
-    
-    return (
-        <ListItemContainer>
-            <DetailsSection>
-                <MainDetail>{dataset.title}</MainDetail>
-                <small>{dataset.description}</small>
-                <br />
-                <div>{formattedData}</div>
-            </DetailsSection>
-        </ListItemContainer>
-    );
+    try{
+        const numOfRows = dataset.numOfRows;
+        const rowList = [...Array(numOfRows).keys()];
+        const features = dataset.features;
+        const header = dataset.header;
+
+        // const getBody = rowList.map(row => {
+        //     return (
+        //             <TR>
+        //                 {
+        //                     features.map(feature => {
+        //                         return (
+        //                             <TD key={feature + ' ' + row}>
+        //                                 {header[feature][row]}
+        //                             </TD>
+        //                         );
+        //                     })
+        //                 }
+        //             </TR>
+        //         );
+        //     }
+        // );
+        //end of getBody
+
+        //rendering to be returned
+        return (
+            <ListItemContainer>
+                <DetailsSection>
+                    <MainDetail>{dataset.title}</MainDetail>
+                    <small>{dataset.description}</small>
+                    <br />
+                    <div>
+                        {'features include: ' + dataset.features.join(' ')}
+                    {/* <TABLE key={dataset.id} className="table-group-items">
+                        <THEAD>
+                            <TR>
+                                {features.map(feature => {
+                                    return (<TH key={feature}>{feature}</TH>)
+                                })}
+                            </TR>
+                        </THEAD>
+                        <TBODY>
+                        </TBODY>
+                    </TABLE> */}
+                    </div>
+                </DetailsSection>
+            </ListItemContainer>
+        );
+    } catch(e){
+        console.error(e);
+        return (
+            <div>
+                Undefined....
+            </div>
+        )
+    }
 }

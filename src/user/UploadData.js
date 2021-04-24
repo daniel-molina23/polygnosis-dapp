@@ -6,15 +6,6 @@ import { ExploreButton, MyWorkButton } from '../components';
 // const ipfsClient = require('ipfs-http-client');
 // const ipfs = ipfsClient('http://localhost:5001');//connect to daemon server through port 5001
 
-// const addFile = async (fileName, filePath) => {
-// 	const file = fs.readFileSync(filePath);
-// 	const fileAdded = await ipfs.add({path: fileName, content: file});
-// 	console.log("fileAdded: ",fileAdded);
-// 	const fileHash = fileAdded.cid.toV0();
-
-// 	return fileHash;
-// }
-
 
 
 const Image = styled.img`
@@ -29,6 +20,15 @@ color: white;
 const Alert = styled.p`
     font-size: 60px;
 `;
+
+// const addFile = async (fileName, filePath) => {
+// 	const file = fs.readFileSync(filePath);
+// 	const fileAdded = await ipfs.add({path: fileName, content: file});
+// 	console.log("fileAdded: ",fileAdded);
+// 	const fileHash = fileAdded.cid.toV0();
+
+// 	return fileHash;
+// }
 
 export const UploadData = () => (
     <div>

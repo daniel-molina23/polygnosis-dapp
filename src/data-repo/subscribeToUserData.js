@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 // import { getPublicDatasets } from './getPublicDatasets';
 // import { mapAsync } from '../util';
 
-export const subscribeToDatasets = (userId, cb) => {
+export const subscribeToUserData = (userId, cb) => {
     const callback = async querySnapshot => {
         const datasets = querySnapshot.docs.map((doc) => ({
             ...doc.data(),

@@ -29,40 +29,37 @@ function App() {
   const {isLoading, user } = useAuth();
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar isAuthed={!!user}/>
       <div className="container mt-2" style={{ marginTop: 40 }}>
         <Switch>
           <Route exact path="/home" component={Home}>
             <Home />
           </Route>
-          <Route exact path="/" component={Home}>
+          <Route exact path="/" >
             <Redirect to="/home" />
           </Route>
           <Route path="/current-stages" component={CurrentStages}>
             <CurrentStages />
           </Route>
-          <Route path="/demo-free-trial" component={Demo}>
+          <Route path="/explore" component={Demo}>
             <Demo />
           </Route>
           <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/my-work" component={MyWorkPage}>
             <MyWorkPage />
           </ProtectedRoute>
-          <Route path="/explore" component={ExplorePage}>
-            <ExplorePage />
-          </Route>
           <Route path="/contact" component={Contact}>
             <Contact />
           </Route>
           <Route path="/about" component={About}>
             <About />
           </Route>
-          <Route path="/sign-in" component={Contact}>
+          <Route path="/sign-in" component={SignInForm}>
             <SignInForm />
           </Route>
-          <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/edit-profile" component={Contact}>
+          <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/edit-profile" component={EditProfilePage}>
             <EditProfilePage />
           </ProtectedRoute>
-          <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/upload-data" component={Contact}>
+          <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/upload-data" component={UploadData}>
             <UploadData />
           </ProtectedRoute>
         </Switch>

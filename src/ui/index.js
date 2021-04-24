@@ -7,7 +7,7 @@ export { Heading } from './Heading';
 export { Modal } from './Modal';
 export { TextInput } from './TextInput';
 export { HeadingSmall } from './HeadingSmall';
-export { TABLE, THEAD, TBODY, TH, TR } from './Table';
+export { TABLE, THEAD, TBODY, TH, TR, TD } from './Table';
 export { Divider } from './Divider';
 export { MaxWidthContentSection } from './MaxWidthContentSection';
 export { SelectionList } from './SelectionList';

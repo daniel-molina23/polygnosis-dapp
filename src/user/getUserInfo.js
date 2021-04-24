@@ -4,7 +4,7 @@ export const getUserInfo = async userId => {
     const userInfoDoc = await firebase.firestore()
         .collection('users')
         .doc(userId)
-        .get()
+        .get();
     
     const userInfo = userInfoDoc.data();
 

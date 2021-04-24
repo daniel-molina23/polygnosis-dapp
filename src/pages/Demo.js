@@ -12,7 +12,7 @@ const Div = styled.div`
 const Demo = () => (
     <Div>
         <DemoSidebar />
-        <PublicDatasetsListPage />
+        {/* <PublicDatasetsListPage /> */}
     </Div>
 );
 

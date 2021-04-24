@@ -1,17 +1,12 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-// import subdomains from '../demo/subdomains';
-import demoRootPath from '../demo/subdomains';
 import styled from 'styled-components';
-
-
+import { ExploreButton } from '../components';
+import { UploadData } from '../user';
 
 
 const H1 = styled.h1`
     font-size: 50px;
 `
-
-const buddyPage = '/explore';
 
 
 class MyWorkPage extends React.Component {
@@ -25,15 +20,8 @@ class MyWorkPage extends React.Component {
         return (
             <div>
                 <H1>My Work</H1>
-                <ul>
-                    <li key={ demoRootPath }>
-                        <Link to={ demoRootPath }>Main Demo Page</Link>
-                    </li>
-                    <li key={buddyPage}>
-                        <Link to={ buddyPage }>Explore Page</Link>
-                    </li>
-                </ul>
-
+                <br />
+                <UploadData />
                 <hr />
 
                 <MyWorkResults />

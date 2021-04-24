@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
-import { signOutButton } from "../auth";
+import { SignOutButton } from "../auth";
 
-export const signOutNewButton = signOutButton;
+// export const SignOutNewButton = signOutButton;
 
-export const signInButton = () => {
+export const SignInButton = () => {
     return (
         <div className="buttons">
             <Link to="/sign-in" className="btn btn-primary">
@@ -61,7 +61,7 @@ const Navbar = ({ isAuthed }) => {
                         <NavLink
                             className="navbar-item"
                             activeClassName="is-active"
-                            to="/demo-free-trial"
+                            to="/explore"
                         >
                             Demo
                         </NavLink>
@@ -88,8 +88,8 @@ const Navbar = ({ isAuthed }) => {
                         <div className="navbar-item">
                             {
                                 isAuthed?
-                                <signOutNewButton /> :
-                                <signInButton />
+                                <SignOutButton /> :
+                                <SignInButton />
                             }
                         </div>
                     </div>
