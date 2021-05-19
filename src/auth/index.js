@@ -3,4 +3,8 @@ export { getCurrentUser } from './getCurrentUser';
 export { ProtectedRoute } from './ProtectedRoute';
 export { signIn } from './signIn';
 export { signOut } from './signOut';
+export { useAuth } from './useAuth';
+export { SignInForm } from './signInForm';
 export { SignOutButton } from './signOutButton';
+export { CreateAccountPage } from './CreateAccountPage';
+export { isValidBio, isValidDisplayName } from './ValidityCheck';

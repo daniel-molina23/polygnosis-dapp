@@ -8,15 +8,16 @@ import CurrentStages from '../pages/CurrentStages';
 import MyWorkPage from '../demo/MyWorkPage';
 import ExplorePage from '../demo/ExplorePage';
 import {ProtectedRoute} from '../auth/ProtectedRoute';
-import {useAuth} from '../auth/useAuth';
-import {SignInForm} from '../auth/signInForm';
+import {
+  useAuth,
+  SignInForm,
+  CreateAccountPage
+} from '../auth';
 import { 
   UploadData,
   EditProfilePage,
 } from '../user';
-
 import React from 'react';
-// import { ProtectedRoute } from '../auth'; //chapter 2 section 7
 import {
   BrowserRouter,
   Switch,
@@ -55,6 +56,9 @@ function App() {
           </Route>
           <Route path="/sign-in" component={SignInForm}>
             <SignInForm />
+          </Route>
+          <Route path="/create-account" component={CreateAccountPage}>
+            <CreateAccountPage />
           </Route>
           <ProtectedRoute isAuthed={!!user} isLoading={isLoading} path="/edit-profile" component={EditProfilePage}>
             <EditProfilePage />

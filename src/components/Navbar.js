@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import { SignOutButton } from "../auth";
+import styled from 'styled-components';
 
-// export const SignOutNewButton = signOutButton;
+
+const Spacer = styled.div`
+    margin-left: 10px;
+`
+
 
 export const SignInButton = () => {
     return (
@@ -16,6 +21,27 @@ export const SignInButton = () => {
     )
 }
 
+export const SignUpButton = () => {
+    return (
+        <div className="buttons">
+            <Link to="/create-account" className="btn btn-primary">
+                <a className="button is-white">
+                    Sign Up
+                </a>
+            </Link>
+        </div>
+    )
+}
+
+export const CombinedSignInAndSignUp = () => {
+    return (
+        <div>
+            <SignInButton />
+            <Spacer />
+            <SignUpButton />
+        </div>
+    );
+};
 
 const Navbar = ({ isAuthed }) => {
     //isOpen state is used to trigger the menu on mobile or tablet devices
@@ -89,7 +115,7 @@ const Navbar = ({ isAuthed }) => {
                             {
                                 isAuthed?
                                 <SignOutButton /> :
-                                <SignInButton />
+                                <CombinedSignInAndSignUp />
                             }
                         </div>
                     </div>
@@ -98,5 +124,6 @@ const Navbar = ({ isAuthed }) => {
         </nav>
     );
 };
+
 
 export default Navbar;
