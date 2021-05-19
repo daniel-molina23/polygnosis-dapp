@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const PageBackground = styled.div`
     background-color: #eee;
-    position: absolute;
+    position: static;
     top: 0;
     bottom: 0;
     left: 0;

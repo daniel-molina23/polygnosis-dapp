@@ -4,16 +4,11 @@ import DemoSidebar from '../demo/DemoSidebar';
 import { PublicDatasetsListPage } from '../datasetsDisplay';
 
 
-const Div = styled.div`
-    color: white;
-`;
-
-
 const Demo = () => (
-    <Div>
+    <div>
         <DemoSidebar />
         <PublicDatasetsListPage />
-    </Div>
+    </div>
 );
 
 export default Demo;

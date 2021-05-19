@@ -8,11 +8,7 @@ import {
     SelectionList,
     MaxWidthContentSection,
 } from '../ui';
-import styled from 'styled-components';
 
-const Div = styled.div`
-    margin-bottom: 10px;
-`;
 
 /*
     This page displays all of the user's current datasets in a list
@@ -22,11 +18,8 @@ export const PublicDatasetsListPage = () => {
 
     useEffect(() => {
         const unsubscribe = subscribeToPublicDatasets(results => {
-            console.log("Length of Data received:", results.length, "\nThe actual data:\n", results);
             setDatasets(results);
-            console.log('finished setting dataset')
         }); //changes or updates dataset
-        
         
         return unsubscribe;
     }, []);//empty paranthesis to ensure it only gets called once!

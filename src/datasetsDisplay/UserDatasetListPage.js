@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserDatasetListItem } from './UserDatasetListItem';
+import { subscribeToCurrentUserDatasets } from '../data-repo';
 import {
     Button,
     Divider,
     Heading,
     HeadingSmall,
-    Link,
     MaxWidthContentSection,
     SelectionList,
 } from '../ui';
+import { Link } from 'react-router-dom';
+
 
 /*
     This page displays all of the user's current datasets in a list
 */
 export const UserDatasetListPage = () => {
     const [datasets, setDatasets] = useState([]);
+
+    useEffect(() => {
+        const unsubscribe = subscribeToCurrentUserDatasets(results => {
+            setDatasets(results);
+        }); //changes or updates dataset
+        
+        return unsubscribe;
+    }, []);//empty paranthesis to ensure it only gets called once!
 
     return (
         <>
@@ -23,7 +33,7 @@ export const UserDatasetListPage = () => {
             </div>
             <Heading>My Datasets</Heading>
             <Divider />
-            {datasets.features.length > 0
+            {datasets.length > 0
                 ? <SelectionList
                     items={datasets}
                     keyProperty='id'

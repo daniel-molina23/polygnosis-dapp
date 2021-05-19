@@ -40,16 +40,6 @@ const ButtonWrap = styled.div`
 
 
 
-// const getFormattedData = ({features, header, numOfRows}) => {
-
-    
-// }
-
-
-
-
-
-
 /*
     This component displays a single dataset's details
     on the dataset list page.
@@ -79,10 +69,7 @@ export const PublicDatasetListItem = ({ item: dataInstance, onSelect }) => {
         //     }
         // );
         //end of getBody
-
-        console.log('item - dataInstance:',dataInstance);
-        console.log('dataInstance.title:', dataInstance.title)
-        console.log('dataInstance.description:', dataInstance.description)
+        
 
         //rendering to be returned
         return (

@@ -35,38 +35,9 @@ const ButtonWrap = styled.div`
     flex: 1;
 `;
 
-
-
-const getFormattedData = async (dataset) => {
-    if(!dataset) return null;
-    const { features, header, numOfRows } = dataset;
-    var table = document.createElement('table');
-
-    var thead = document.createElement('thead');
-    var tr = document.createElement('tr');
-    for (const feature in features){
-        var th = document.createElement('th');
-        th.textContent = feature;
-        tr.appendChild(th);
-    }
-    thead.appendChild(tr);
-
-    var tbody = document.createElement('tbody');
-    for(var i = 0; i < numOfRows; i++){
-        var tr = document.createElement('tr');
-        for(const feature in features){
-            var td = document.createElement('td');
-            td.textContent = header[feature][i];
-            tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-    }
-
-    table.appendChild(thead);
-    table.appendChild(tbody);
-
-    return table;
-}
+const Public = styled.small`
+    color: ${(props) => props.color};
+`
 
 
 /*
@@ -74,16 +45,18 @@ const getFormattedData = async (dataset) => {
     on the dataset list page.
 */
 export const UserDatasetListItem = ({ item: dataInstance }) => {
-    //instance from the entire dataset
-    // const formattedData = await getFormattedData(dataset);
     
     return (
         <ListItemContainer>
             <DetailsSection>
-                <br />
                 <MainDetail>{dataInstance.title}</MainDetail>
-                <small>{dataInstance.description}</small>
-                <br />
+                <div>{dataInstance.description}</div>
+                <br/>
+                {dataInstance.public ? 
+                    <Public color={'#B5651D'}> Public: True</Public> 
+                    : 
+                    <Public color={'#0D52BD'}> Public: True</Public> 
+                }
             </DetailsSection>
         </ListItemContainer>
     );
