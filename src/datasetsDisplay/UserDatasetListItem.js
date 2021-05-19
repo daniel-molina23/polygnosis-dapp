@@ -73,26 +73,18 @@ const getFormattedData = async (dataset) => {
     This component displays a single dataset's details
     on the dataset list page.
 */
-export const UserDatasetListItem = ({ item: dataset, onSelect }) => {
-    const formattedData = await getFormattedData(dataset);
+export const UserDatasetListItem = ({ item: dataInstance }) => {
+    //instance from the entire dataset
+    // const formattedData = await getFormattedData(dataset);
     
     return (
         <ListItemContainer>
-            <ThumbnailWrap>
-                <Thumbnail width='100px' height='100px' url={restaurant.imageUrl} />
-            </ThumbnailWrap>
             <DetailsSection>
-                <MainDetail>{dataset.title}</MainDetail>
-                <small>{dataset.description}</small>
                 <br />
-                <div>{formattedData}</div>
+                <MainDetail>{dataInstance.title}</MainDetail>
+                <small>{dataInstance.description}</small>
+                <br />
             </DetailsSection>
-            {/* <ButtonWrap>
-                <Button
-                    type='shadow'
-                    onClick={() => onSelect(dataset)}
-                >View</Button>
-            </ButtonWrap> */}
         </ListItemContainer>
     );
 }

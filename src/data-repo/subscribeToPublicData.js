@@ -9,7 +9,7 @@ export const subscribeToPublicData = (cb) => {
             ...doc.data(),
             id: doc.id,
         }));
-
+        console.log('datasets:',datasets)
         const populatedDatasets = await mapAsync(datasets, async dataset => {
             const userId = dataset.userId;
             const userInfo = await getUserInfo(userId);
@@ -20,9 +20,10 @@ export const subscribeToPublicData = (cb) => {
             };
         });
 
+        console.log('populatedDatasets:', populatedDatasets)
         cb(populatedDatasets);
     }
-
+    
     return firebase.firestore()
         .collection('data-repo')
         .where('public', '==', true)

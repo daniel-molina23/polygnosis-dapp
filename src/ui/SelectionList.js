@@ -13,6 +13,7 @@ export const SelectionList = ({
     onItemSelected,
     itemComponent: ItemComponent,
 }) =>
+    (
     <ListWrap>
         {title ? <HeadingSmall>{title}</HeadingSmall> : null}
         {items.map(item => (
@@ -22,3 +23,4 @@ export const SelectionList = ({
                 item={item} />
         ))}
     </ListWrap>
+    )

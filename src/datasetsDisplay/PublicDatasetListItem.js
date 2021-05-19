@@ -25,6 +25,7 @@ const ThumbnailWrap = styled.div`
 
 const DetailsSection = styled.div`
     flex: 8;
+    color: black;
 `;
 
 const MainDetail = styled.div`
@@ -54,12 +55,12 @@ const ButtonWrap = styled.div`
     on the dataset list page.
 */
 
-export const PublicDatasetListItem = async ({ item: dataset, onSelect }) => {
+export const PublicDatasetListItem = ({ item: dataInstance, onSelect }) => {
     try{
-        const numOfRows = dataset.numOfRows;
-        const rowList = [...Array(numOfRows).keys()];
-        const features = dataset.features;
-        const header = dataset.header;
+        // const numOfRows = dataset.numOfRows;
+        // const rowList = [...Array(numOfRows).keys()];
+        // const features = dataset.features;
+        // const header = dataset.header;
 
         // const getBody = rowList.map(row => {
         //     return (
@@ -79,27 +80,17 @@ export const PublicDatasetListItem = async ({ item: dataset, onSelect }) => {
         // );
         //end of getBody
 
+        console.log('item - dataInstance:',dataInstance);
+        console.log('dataInstance.title:', dataInstance.title)
+        console.log('dataInstance.description:', dataInstance.description)
+
         //rendering to be returned
         return (
             <ListItemContainer>
                 <DetailsSection>
-                    <MainDetail>{dataset.title}</MainDetail>
-                    <small>{dataset.description}</small>
-                    <br />
-                    <div>
-                        {'features include: ' + dataset.features.join(' ')}
-                    {/* <TABLE key={dataset.id} className="table-group-items">
-                        <THEAD>
-                            <TR>
-                                {features.map(feature => {
-                                    return (<TH key={feature}>{feature}</TH>)
-                                })}
-                            </TR>
-                        </THEAD>
-                        <TBODY>
-                        </TBODY>
-                    </TABLE> */}
-                    </div>
+                    <MainDetail>{dataInstance.title}</MainDetail>
+                    <div>Dataset description:</div>
+                    <div>{dataInstance.description}</div>
                 </DetailsSection>
             </ListItemContainer>
         );
