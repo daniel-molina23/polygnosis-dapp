@@ -11,6 +11,8 @@ import {
     TextInput,
     TextArea,
 } from '../ui';
+import { createUserAccount } from '../user/createUserAccount';
+
 
 // These are styled components, which are used throughout
 // the application. Basically, they allow us to define CSS
@@ -76,10 +78,23 @@ export const CreateAccountPage = () => {
             return;
         }
 
-        // Firebase-related code goes here
+        const newDocument = {
+            firstName,
+            lastName,
+            displayName,
+            bio,
+        }
 
-        
-        history.push('/my-work')
+
+        try{
+            // create new account with basic info
+            await createUserAccount(emailAddress, password, newDocument)
+            history.push('/my-work');
+            
+        }
+        catch(e){
+            console.error(e);
+        }
     }
 
     return (

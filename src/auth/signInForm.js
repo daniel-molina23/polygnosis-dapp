@@ -14,6 +14,10 @@ import { ResetPasswordForm } from './ResetPasswordForm';
 const Form = styled.div`
     width: 350px;
     margin: 32px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 const FullWidthTextInput = styled(TextInput)`
@@ -34,7 +38,8 @@ const CreateAccountButton = styled(FullWidthButton)`
 
 const NewHeading = styled(Heading)`
     font-size: 20px;
-    color: grey;
+    color: #d3d3d3;
+    margin-bottom: 10px
 `;
 
 const withTopMargin = px => ({ marginTop: `${px}px` });
@@ -61,9 +66,9 @@ export const SignInForm = () => {
         }
     }
 
-    const onSignInWithGoogleClicked = async () => {
-        // Firebase code goes here
-    }
+    // const onSignInWithGoogleClicked = async () => {
+    //     // Firebase code goes here
+    // }
 
     return (
         <Form>
@@ -97,14 +102,18 @@ export const SignInForm = () => {
                 style={withTopMargin(8)}
                 onClick={onSignInClicked}
             >Sign In</FullWidthButton>
-            <FullWidthButton
+            {/* <FullWidthButton
                 style={withTopMargin(8)}
                 onClick={onSignInWithGoogleClicked}
-            >Sign In With Google</FullWidthButton>
-            <CreateAccountButton
+            >Sign In With Google</FullWidthButton> */}
+            <FullWidthButton
+                style={withTopMargin(8)}
+                onClick={() => history.push('/create-account')}
+            >Create an account</FullWidthButton>
+            {/* <CreateAccountButton
                 type='transparent'
                 onClick={() => history.push('/create-account')}
-            >Create an account</CreateAccountButton>
+            >Create an account</CreateAccountButton> */}
             <Modal
                 isOpen={showModal}
                 onRequestClose={() => setShowModal(false)}
