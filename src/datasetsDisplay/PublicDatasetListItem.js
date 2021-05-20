@@ -5,7 +5,8 @@ import styled from 'styled-components';
 //     Thumbnail,
 // } from '../ui';
 import './DatasetListTable.css';
-import { TABLE, THEAD, TBODY, TR, TH, TD } from '../ui';
+// import { TABLE, THEAD, TBODY, TR, TH, TD } from '../ui';
+import { FontWeight, FontStyle } from "styled-typography";
 
 
 
@@ -35,6 +36,10 @@ const MainDetail = styled.div`
 
 const ButtonWrap = styled.div`
     flex: 1;
+`;
+
+const Small = styled.small`
+    color: #00d1b2;
 `;
 
 
@@ -69,7 +74,7 @@ export const PublicDatasetListItem = ({ item: dataInstance, onSelect }) => {
         //     }
         // );
         //end of getBody
-        
+
 
         //rendering to be returned
         return (
@@ -78,6 +83,7 @@ export const PublicDatasetListItem = ({ item: dataInstance, onSelect }) => {
                     <MainDetail>{dataInstance.title}</MainDetail>
                     <div>Dataset description:</div>
                     <div>{dataInstance.description}</div>
+                    <Small>Published by: <b>{dataInstance.displayName}</b></Small>
                 </DetailsSection>
             </ListItemContainer>
         );

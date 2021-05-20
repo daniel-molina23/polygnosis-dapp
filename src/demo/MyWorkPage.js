@@ -4,23 +4,30 @@ import { ExploreButton } from '../components';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui';
 import { UserDatasetListPage } from '../datasetsDisplay';
+import { Settings } from '@styled-icons/fluentui-system-filled';
+
 
 const H1 = styled.h1`
     font-size: 50px;
-`
+`;
 
 const Div = styled.div`
     color: white;
-`
+`;
+
 const SpacedDiv = styled.div`
     margin-top: 15px;
     margin-bottom: 10px;
     float: right;
-`
+`;
 
 const BlackFont = styled.div`
     color:black;
-`
+`;
+
+const SettingsIcon = styled(Settings)`
+    color: grey;
+`;
 
 
 class MyWorkPage extends React.Component {
@@ -38,8 +45,11 @@ class MyWorkPage extends React.Component {
                         <ExploreButton />
                         <Link to="/upload-data">
                             <Button>
-                                Upload New Data
+                                Upload Datasets
                             </Button>
+                        </Link>
+                        <Link to="/edit-profile">
+                            <SettingsIcon size="50" />
                         </Link>
                     </SpacedDiv>
 
