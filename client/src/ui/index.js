@@ -15,3 +15,4 @@ export { Thumbnail } from './Thumbnail';
 export { CenteredContentBox } from './CenteredContentBox';
 export { TextArea } from './TextArea';
 export { UploadSingleFileButton } from './UploadSingleFileButton';
+export { ToggleSwitchButton } from './ToggleSwitchButton';
