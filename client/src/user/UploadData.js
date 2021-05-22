@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import { ExploreButton, MyWorkButton } from '../components';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import uploadDatasetForCurrentUser from './uploadDatasetForCurrentUser';
+import {uploadDatasetForCurrentUser} from './uploadDatasetForCurrentUser';
 import { TextArea,
     ToggleSwitchButton,
     ErrorMessage,
+    Button,
 } from '../ui';
 
 
@@ -24,7 +25,7 @@ const Image = styled.img`
 
 const Div = styled.div`
     color: ${(props) => props.color || 'white'};
-    font-weight: ${() => props.fontWeight || 400}
+    font-weight: ${(props) => props.fontWeight || 400}
 `;
 
 const State = styled.p`
@@ -48,36 +49,24 @@ const Form = styled.div`
     margin: 32px;
 `;
 
-
-
-// const addFile = async (fileName, filePath) => {
-// 	const file = fs.readFileSync(filePath);
-// 	const fileAdded = await ipfs.add({path: fileName, content: file});
-// 	console.log("fileAdded: ",fileAdded);
-// 	const fileHash = fileAdded.cid.toV0();
-
-// 	return fileHash;
-// }
+const FullWidthButton = styled(Button)`
+    width: 100%;
+`;
 
 
 export const UploadData = () => {
-    // const [datasets, setDatasets] = useState([]);
-    // const [filePath, setFilePath] = useState(null); //set in React
     const [body, setBody ] = useState({}); //received from Express API
     const [buffer, setBuffer ] = useState(null); //file buffer for IPFS
     const [isLoading, setIsLoading ] = useState(false);
     const [error, setError ] = useState('');
     const [title, setTitle ] = useState('');
     const [description, setDescription ] = useState('');
-    const [public, setPublic ] = useState(false);
+    const [isPublic, setIsPublic ] = useState(false);
     const [errorMessage, setErrorMessage ] = useState('');
 
     const history = useHistory();//re-route page
-    const dfd = require("danfojs-node");//data processing like pandas for python
 
-    const readData = (file) => {
-        
-    } 
+
     // useEffect(() => {
     //     const unsubscribe = subscribeToCurrentUserDatasets(results => {
     //         setDatasets(results);
@@ -97,7 +86,7 @@ export const UploadData = () => {
 
     const togglePublic = () => {
         const checked = document.getElementById('checkbox').checked
-        setPublic(checked);
+        setIsPublic(checked);
     }
 
     const captureFile = async (event) => {
@@ -110,7 +99,6 @@ export const UploadData = () => {
             const temp = Buffer(reader.result);
             console.log('In temp: ', temp);
             setBuffer(temp);
-            console.log('buffer:', buffer);
         }
         setError(false);
     }
@@ -128,56 +116,68 @@ export const UploadData = () => {
         return null;
     }
 
+    const onSubmitAll = async (event) => {
+        await onSubmit(event);
+    }
+
     const onSubmit = async (event) => {
         event.preventDefault();
         setErrorMessage('');
         setIsLoading(true); //render to show user the request is processing
-        console.log("Submitting file to ipfs...");
+        console.log("Submitting file from UploadData..., buffer is:\n", buffer);
 
-        dfd.read_csv("file:///home/Desktop/bigdata.csv", chunk=10000)
-            .then(df => {
-                df.tail().print()
-            }).catch(err=>{
-                console.log(err);
-            })
+        const body = JSON.stringify(buffer.toJSON());
+        console.log('body:', body)
 
-        //sending the file to the proxy server
-        const sendBody = { buffer,  };
-        //ipfsHash, features (array), header (map+array)
-        //userId, public(boolean), title
-        //description
-        //number of rows in header (max=10)
-        //
-
-        fetch('https://httpbin.org/post', {
-                method: 'post',
-                body:    JSON.stringify(sendBody),
+        let tempData = null;
+        //GET request
+        await fetch('/ipfs-api/ipfsFileAdd/', {
+                method: 'POST',
+                body,
                 headers: { 'Content-Type': 'application/json' },
             })
-            .then(res => res.json()) //the json I get back!
-            .then(json => console.log(json));
-
-        //do feature data processing! {feature1: [1,2,3], header: {...}, etc}
-
-        setBody({
-            ipfsHash: fileAdded.cid.toV0(),
-        })
-
-        console.log('fileAdded.cid.toV0():',fileAdded.cid.toV0())
+            .then(res => {
+                //RESPONSE BACK:
+                // {ipfsHash (str), features (array), header ({featureName:values}), numOfRows (int)}
+                const json = res.json();
+                console.log('JSON received from PROXY SERVER: ',json);
+                tempData = json;
+            }) //the json I get back!
+            .catch(e => {
+                //in case of error
+                setError(true);
+                setIsLoading(false);
+                setErrorMessage('Something went wrong while sending file to Express Server');
+                console.error(e);
+                return
+            });
+        
 
 
         //validate form before going into Firebase
         const validationError = validateForm();
-        if(validationError !== null){
+        if(validationError !== null && tempData !== null){
             setError(true);
             setIsLoading(false);
             setErrorMessage(validationError);
             return
         }
 
+        
+        //combine fields
+        const newBody = {
+            ...tempData,
+            isPublic,
+            title,
+            description,
+        }
+
+        console.log('The final body before going to the DB:\n', body);
+
         //firebase code goes here
         try{
-            await uploadDatasetForCurrentUser(body);
+            //userId(extracted from DB back-end) and added to doc
+            await uploadDatasetForCurrentUser(newBody);
         } catch(e){
             setErrorMessage(e.message);
             return
@@ -216,15 +216,12 @@ export const UploadData = () => {
                         <tbody>
                             <tr>
                                 <td>
-                                    <form onSubmit={onSubmit} >
                                         <div>
                                             <br/>
                                             <label>Upload file</label>
                                             <input type="file" name="filePath" onChange={captureFile}/>
-                                            <br/><br/>
-                                            <input type="submit"/>
+                                            <br/>
                                         </div>
-                                    </form>
                                 </td>
                                 <td>
                                     {isLoading?
@@ -261,7 +258,7 @@ export const UploadData = () => {
                                     <ToggleSwitchButton onChange={togglePublic}/>
                                 </td>
                                 <td>
-                                    {public?
+                                    {isPublic?
                                         <PublicToggs color={'blue'}>
                                             public
                                         </PublicToggs>
@@ -276,7 +273,7 @@ export const UploadData = () => {
                     </FieldsTable>
                     <FullWidthButton
                         disabled={isLoading}
-                        onClick={onSubmitChanges}
+                        onClick={onSubmitAll}
                     >Submit Dataset</FullWidthButton>
                 </Form>
             </Div>
