@@ -25,6 +25,6 @@ export const subscribeToPublicData = (cb) => {
     
     return firebase.firestore()
         .collection('data-repo')
-        .where('public', '==', true)
+        .where('isPublic', '==', true)
         .onSnapshot(callback);
 }

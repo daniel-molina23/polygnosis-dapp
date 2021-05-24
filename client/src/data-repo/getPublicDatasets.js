@@ -5,7 +5,7 @@ import { getUserInfo } from '../user';
 export const getPublicDatasets = async () => {
     const querySnapshot = await firebase.firestore()
         .collection('data-repo')
-        .where('public','==', true)
+        .where('isPublic','==', true)
         .limit(20)
         .get();
 

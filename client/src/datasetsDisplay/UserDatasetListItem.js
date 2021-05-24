@@ -53,7 +53,7 @@ export const UserDatasetListItem = ({ item: dataInstance }) => {
                 <MainDetail>{dataInstance.title}</MainDetail>
                 <div>{dataInstance.description}</div>
                 <br/>
-                {dataInstance.public ? 
+                {dataInstance.isPublic ? 
                     <Public color={'#B5651D'}> Public: <b>True</b></Public> 
                     :
                     <Public color={'red'}> Public: <b>False</b></Public>
